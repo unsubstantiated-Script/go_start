@@ -3,15 +3,21 @@ package methods
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
+	"time"
 )
 
 const prompt = "and press Enter when ready."
 
 func MathGame() {
-	var firstNumber = 2
-	var secondNumber = 5
-	var subtraction = 7
+	//Seed to avoid getting the same number every time. Based upon finite time changes which always change.
+	rand.Seed(time.Now().UnixNano())
+
+	//Adding 2 here keeps us in bounds to avoid bad division operations
+	var firstNumber = rand.Intn(8) + 2
+	var secondNumber = rand.Intn(8) + 2
+	var subtraction = rand.Intn(8) + 2
 	var answer int
 
 	reader := bufio.NewReader(os.Stdin)
@@ -38,5 +44,6 @@ func MathGame() {
 
 	// Give them the answer
 	answer = firstNumber*secondNumber - subtraction
-	fmt.Println("The answer is...", answer, prompt)
+
+	fmt.Println("The answer is...", answer, "Buh-Bye!")
 }
