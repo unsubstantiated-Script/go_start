@@ -1,7 +1,5 @@
 package main
 
-import "go_start/methods"
-
 func main() {
 	//methods.Hello()
 	//methods.SayHelloWorld("Smell This!")
@@ -11,8 +9,7 @@ func main() {
 	//newString := packageone.PublicVar
 	//fmt.Println("From packageone:", newString)
 	//packageone.Exported()
-
-	methods.ConsoleReader()
+	//methods.KoffeeConsole()
 }
 
 //Gererate packages with "go mod init myapp"
