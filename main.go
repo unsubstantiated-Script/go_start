@@ -7,7 +7,12 @@ func main() {
 	//methods.SayHelloWorld("Smell This!")
 	//methods.GoDotNotationGO()
 	//doctor.TalkDoc()
-	methods.MathGame()
+	//methods.MathGame()
+	//newString := packageone.PublicVar
+	//fmt.Println("From packageone:", newString)
+	//packageone.Exported()
+
+	methods.ConsoleReader()
 }
 
 //Gererate packages with "go mod init myapp"
