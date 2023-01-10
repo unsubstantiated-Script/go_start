@@ -1,6 +1,6 @@
 package main
 
-import hammerbitcoin "go_start/hammer-bitcoin"
+import "go_start/methods"
 
 func main() {
 	//methods.Hello()
@@ -12,7 +12,8 @@ func main() {
 	//fmt.Println("From packageone:", newString)
 	//packageone.Exported()
 	//methods.KoffeeConsole()
-	hammerbitcoin.MinerGame()
+	//hammerbitcoin.MinerGame()
+	methods.StringInterpolate()
 }
 
 //Gererate packages with "go mod init myapp"
