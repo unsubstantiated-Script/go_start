@@ -1,31 +1,48 @@
 package methods
 
-import "log"
-
-//basic types (numbers, strings, bools)
-var myInt int //<-probably only use this one
-//var myInt16 int16
-//var myInt32 int32
-//var myInt64 int64
-var myUint uint //<-positive values only
-var myFloat32 float32
-var myFloat64 float64
+import "fmt"
 
 //For various architecture types
 
-func TypesOfAggrigates() {
-	myInt = 10
-	myUint = 20
-	myFloat32 = 10.1
-	myFloat64 = 100.1
-	log.Println(myInt, myUint, myFloat32, myFloat64)
+//Structs
+type Car struct {
+	NumberOfTires int
+	Luxury        bool
+	BucketSeats   bool
+	Make          string
+	Model         string
+	Year          int
+}
 
-	myString := ""
-	log.Println(myString)
-	myString = "Strings in Go are immutable, you're actually creating a new var here..."
-	log.Println(myString)
+func TypesOfAggregates() {
+	//Arrays
+	//Note: Slices are often preferred over Arrays due to more functionality built in
+	var myStrings [3]string
+	myStrings[0] = "cat"
+	myStrings[1] = "dog"
+	myStrings[2] = "bird"
 
-	//var myBool = true
-	////myBool != "Yellow"
+	fmt.Println("First element in array is", myStrings[0])
+
+	//instantiating the struct
+	//var myCar Car
+	//myCar.NumberOfTires = 4
+	//myCar.Luxury = false
+	//myCar.BucketSeats = true
+	//myCar.Make = "Chevy"
+	//myCar.Model = "Pickup"
+	//myCar.Year = 1996
+
+	//Another way...
+	myCar := Car{
+		NumberOfTires: 4,
+		Luxury:        false,
+		BucketSeats:   true,
+		Make:          "Chevy",
+		Model:         "Pickup",
+		Year:          1996,
+	}
+
+	fmt.Printf("My car is a %d %s %s\n", myCar.Year, myCar.Make, myCar.Model)
 
 }

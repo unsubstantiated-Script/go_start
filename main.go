@@ -15,7 +15,9 @@ func main() {
 	//hammerbitcoin.MinerGame()
 	//methods.StringInterpolate()
 	//methods.TypesOfVars()
-	methods.TypesOfAggrigates()
+	//methods.TypesOfAggregates()
+	//methods.TypesOfPointers()
+	methods.TypesOfSlices()
 }
 
 //Gererate packages with "go mod init myapp"
