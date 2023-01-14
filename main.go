@@ -13,7 +13,9 @@ func main() {
 	//packageone.Exported()
 	//methods.KoffeeConsole()
 	//hammerbitcoin.MinerGame()
-	methods.StringInterpolate()
+	//methods.StringInterpolate()
+	//methods.TypesOfVars()
+	methods.TypesOfAggrigates()
 }
 
 //Gererate packages with "go mod init myapp"
