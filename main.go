@@ -19,7 +19,8 @@ func main() {
 	//methods.TypesOfPointers()
 	//methods.TypesOfSlices()
 	//methods.TypesOfMaps()
-	methods.TypesOfFunctions()
+	//methods.TypesOfFunctions()
+	methods.TypesOfChannels()
 }
 
 //Gererate packages with "go mod init myapp"
