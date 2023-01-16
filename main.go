@@ -18,7 +18,8 @@ func main() {
 	//methods.TypesOfAggregates()
 	//methods.TypesOfPointers()
 	//methods.TypesOfSlices()
-	methods.TypesOfMaps()
+	//methods.TypesOfMaps()
+	methods.TypesOfFunctions()
 }
 
 //Gererate packages with "go mod init myapp"
