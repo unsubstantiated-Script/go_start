@@ -20,7 +20,8 @@ func main() {
 	//methods.TypesOfSlices()
 	//methods.TypesOfMaps()
 	//methods.TypesOfFunctions()
-	methods.TypesOfChannels()
+	//methods.TypesOfChannels()
+	methods.TypesOfInterfaces()
 }
 
 //Gererate packages with "go mod init myapp"
