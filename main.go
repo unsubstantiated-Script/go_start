@@ -22,7 +22,8 @@ func main() {
 	//methods.TypesOfFunctions()
 	//methods.TypesOfChannels()
 	//methods.TypesOfInterfaces()
-	methods.Expressions()
+	//methods.Expressions()
+	methods.Bools()
 }
 
 //Gererate packages with "go mod init myapp"
