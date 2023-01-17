@@ -21,7 +21,8 @@ func main() {
 	//methods.TypesOfMaps()
 	//methods.TypesOfFunctions()
 	//methods.TypesOfChannels()
-	methods.TypesOfInterfaces()
+	//methods.TypesOfInterfaces()
+	methods.Expressions()
 }
 
 //Gererate packages with "go mod init myapp"
