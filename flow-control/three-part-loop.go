@@ -1,0 +1,10 @@
+package flow_control
+
+import "fmt"
+
+func MakingThreeLoop() {
+	for i := 0; i <= 10; i = i + 1 {
+		fmt.Println("i is:", i)
+
+	}
+}

@@ -25,6 +25,7 @@ func main() {
 	//methods.Expressions()
 	//methods.Compositions()
 	//staffing.Staffing()
+	//flow_control.MakingThreeLoop()
 }
 
 //Gererate packages with "go mod init myapp"
