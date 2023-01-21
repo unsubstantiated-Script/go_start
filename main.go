@@ -1,6 +1,8 @@
 package main
 
-import my_logger "go_start/flow-control/my-logger"
+import (
+	flow_control "go_start/flow-control"
+)
 
 func main() {
 	//methods.Hello()
@@ -29,7 +31,8 @@ func main() {
 	//staffing.Staffing()
 	//flow_control.MakingThreeLoop()
 	//flow_control.WhileLoop()
-	my_logger.LogerInit()
+	//my_logger.LogerInit()
+	flow_control.NestedDebugger()
 }
 
 //Gererate packages with "go mod init myapp"
