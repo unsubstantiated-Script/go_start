@@ -1,8 +1,6 @@
 package main
 
-import (
-	flow_control "go_start/flow-control"
-)
+import rock_paper_scissors "go_start/rock-paper-scissors"
 
 func main() {
 	//methods.Hello()
@@ -32,7 +30,8 @@ func main() {
 	//flow_control.MakingThreeLoop()
 	//flow_control.WhileLoop()
 	//my_logger.LogerInit()
-	flow_control.NestedDebugger()
+	//flow_control.NestedDebugger()
+	rock_paper_scissors.RunGame()
 }
 
 //Gererate packages with "go mod init myapp"
