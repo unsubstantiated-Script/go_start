@@ -1,6 +1,6 @@
 package main
 
-import rock_paper_scissors "go_start/rock-paper-scissors"
+import _select "go_start/select"
 
 func main() {
 	//methods.Hello()
@@ -31,7 +31,8 @@ func main() {
 	//flow_control.WhileLoop()
 	//my_logger.LogerInit()
 	//flow_control.NestedDebugger()
-	rock_paper_scissors.RunGame()
+	//rock_paper_scissors.RunGame()
+	_select.Select()
 }
 
 //Gererate packages with "go mod init myapp"
