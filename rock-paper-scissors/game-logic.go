@@ -31,25 +31,22 @@ type Round struct {
 
 var reader = bufio.NewReader(os.Stdin)
 
-//Tied to the Game type
 func (g *Game) Rounds() {
-	//Using to select and process input for the game
-	//Print to screen
-	//Keep track of round number
+	// use select to process input in channels
 	for {
 		select {
 		case round := <-g.RoundChan:
-			//Incrementing the round number
 			g.Round.RoundNumber = g.Round.RoundNumber + round
-			g.RoundChan <- 1
+			g.RoundChan <- 0
 		case msg := <-g.DisplayChan:
 			fmt.Println(msg)
+			// *** changed here to send info back when done
+			g.DisplayChan <- ""
 		}
 	}
 }
 
-//Clearing screen based on OS
-// clearScreen clears the screen
+// ClearScreen clears the screen
 func (g *Game) ClearScreen() {
 	if strings.Contains(runtime.GOOS, "windows") {
 		// windows
@@ -65,32 +62,34 @@ func (g *Game) ClearScreen() {
 }
 
 func (g *Game) PrintIntro() {
-	fmt.Println("Rock, Paper, & Scissors")
-	fmt.Println("-----------------------")
-	fmt.Println("Game has three rounds, best of three wins.")
-	fmt.Println()
+	// *** changed here
+	g.DisplayChan <- fmt.Sprintf(`
+Rock, Paper & Scissors
+----------------------
+Game is played for three rounds, and best of three wins the game. Good luck!
+
+`)
+	<-g.DisplayChan
 }
 
 func (g *Game) PlayRound() bool {
-	//Seeding random number
 	rand.Seed(time.Now().UnixNano())
-
-	//Setting player's value
 	playerValue := -1
+	// *** changed here
+	g.DisplayChan <- fmt.Sprintf(`
 
-	//Printing prompt for player
-	fmt.Println()
-	fmt.Println("Round", g.Round.RoundNumber)
-	fmt.Println("______")
-	fmt.Print("Please enter rock, paper, or scissors ->")
+Round %d
+-------
+`, g.Round.RoundNumber)
+	<-g.DisplayChan
+
+	fmt.Print("Please enter rock, paper, or scissors -> ")
 	playerChoice, _ := reader.ReadString('\n')
 	playerChoice = strings.Replace(playerChoice, "\n", "", -1)
 	playerChoice = strings.Replace(playerChoice, "\r", "", -1)
 
-	//Value of computer choice
 	computerValue := rand.Intn(3)
 
-	//Processing input
 	if playerChoice == "rock" {
 		playerValue = ROCK
 	} else if playerChoice == "paper" {
@@ -99,25 +98,39 @@ func (g *Game) PlayRound() bool {
 		playerValue = SCISSORS
 	}
 
+	// *** changed here
+	g.DisplayChan <- ""
+	<-g.DisplayChan
+
+	g.DisplayChan <- fmt.Sprintf("Player chose %s", strings.ToUpper(playerChoice))
+	<-g.DisplayChan
 	switch computerValue {
 	case ROCK:
-		fmt.Println("Computer chose Rock")
+		// *** changed here
+		g.DisplayChan <- "Computer chose ROCK"
+		<-g.DisplayChan
 		break
 	case PAPER:
-		fmt.Println("Computer chose Paper")
+		// *** changed here
+		g.DisplayChan <- "Computer chose PAPER"
+		<-g.DisplayChan
 		break
 	case SCISSORS:
-		fmt.Println("Computer chose Scissors")
+		// *** changed here
+		g.DisplayChan <- "Computer chose SCISSORS"
+		<-g.DisplayChan
 		break
 	default:
 	}
 
-	//Printing out player choice via a channel we've setup in the other file
-	fmt.Println()
+	// *** changed here
+	g.DisplayChan <- ""
+	<-g.DisplayChan
 
 	if playerValue == computerValue {
 		g.DisplayChan <- "It's a draw!"
-		//decrement the loop by one so the round repeats on draws...ends round
+		// *** changed here
+		<-g.DisplayChan
 		return false
 	} else {
 		switch playerValue {
@@ -143,7 +156,9 @@ func (g *Game) PlayRound() bool {
 			}
 			break
 		default:
-			g.DisplayChan <- "Invalid Choice!"
+			g.DisplayChan <- "Invalid choice!"
+			// *** changed here
+			<-g.DisplayChan
 			return false
 		}
 	}
@@ -153,10 +168,38 @@ func (g *Game) PlayRound() bool {
 
 func (g *Game) computerWins() {
 	g.Round.ComputerScore++
-	g.DisplayChan <- "You loser the computer beat you that round. Do better!"
+	g.DisplayChan <- "Computer wins!"
+	// *** changed here
+	<-g.DisplayChan
 }
 
 func (g *Game) playerWins() {
 	g.Round.PlayerScore++
-	g.DisplayChan <- "You won that one, but what did you really accomplish here? "
+	g.DisplayChan <- "Player wins!"
+	// *** changed here
+	<-g.DisplayChan
+}
+
+func (g *Game) PrintSummary() {
+	// *** changed here
+	g.DisplayChan <- fmt.Sprintf(`
+Final Score
+-----------
+Player: %d/3, Computer %d/3
+`, g.Round.PlayerScore, g.Round.ComputerScore)
+	<-g.DisplayChan
+
+	if g.Round.PlayerScore > g.Round.ComputerScore {
+		g.DisplayChan <- "Player wins game!"
+		// *** changed here
+		<-g.DisplayChan
+	} else {
+		g.DisplayChan <- "Computer wins game!"
+		// *** changed here
+		<-g.DisplayChan
+	}
+
+	// *** changed here
+	g.DisplayChan <- ""
+	<-g.DisplayChan
 }

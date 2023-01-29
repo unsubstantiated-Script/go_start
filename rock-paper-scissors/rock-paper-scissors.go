@@ -36,13 +36,6 @@ func RunGame() {
 		}
 	}
 
-	//fmt.Println("Final score")
-	//fmt.Println("==============")
-	//fmt.Printf("Player: %d/3, Computer %d/3", playerScore, computerScore)
-	//fmt.Println()
-	//if playerScore > computerScore {
-	//	fmt.Println("Player wins! But really?")
-	//} else {
-	//	fmt.Println("Computer hosed you!")
-	//}
+	game.PrintSummary()
+
 }
